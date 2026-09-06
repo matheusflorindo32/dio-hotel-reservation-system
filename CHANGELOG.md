@@ -17,8 +17,8 @@ Todas as mudanças notáveis deste projeto são documentadas aqui, seguindo
 - Validações de dados inválidos (RN-005);
 - Aplicação console de demonstração com três cenários;
 - 45 testes unitários e 4 testes de integração (xUnit);
-- Workflow de CI (build + testes em Release) e CodeQL (conteúdo em
-  `.github/workflows/`);
+- Workflows de CI (build + testes em Release) e CodeQL prontos em `docs/ci/`,
+  com ativação pendente em um passo manual (ver `docs/ci/README.md`);
 - Documentação: arquitetura, regras de negócio, matriz de rastreabilidade,
   estratégia de testes, roadmap, ADRs e diagramas Mermaid;
 - Arquivos de governança: LICENSE (MIT), CONTRIBUTING, SECURITY, templates de
