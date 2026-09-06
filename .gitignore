@@ -1,0 +1,31 @@
+# Build results
+bin/
+obj/
+out/
+
+# Test results e cobertura
+TestResults/
+*.trx
+coverage*.xml
+coverage*.json
+
+# IDEs
+.vs/
+.vscode/
+.idea/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Segredos e configuracoes locais
+.env
+*.local.json
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
+
+# NuGet
+*.nupkg
+*.snupkg
