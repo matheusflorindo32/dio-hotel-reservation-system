@@ -6,7 +6,10 @@ on:
   pull_request:
     branches: [main]
   schedule:
-    - cron: "0 6 * * 1" # semanal, segundas 06:00 UTC
+    - cron: "0 6 * * 1"
+
+permissions:
+  contents: read
 
 jobs:
   analyze:
@@ -32,8 +35,11 @@ jobs:
         with:
           dotnet-version: "8.0.x"
 
-      - name: Build
-        run: dotnet build --configuration Release
+      - name: Restore dependencies
+        run: dotnet restore
+
+      - name: Build (Release)
+        run: dotnet build --configuration Release --no-restore
 
       - name: Perform CodeQL analysis
         uses: github/codeql-action/analyze@v3

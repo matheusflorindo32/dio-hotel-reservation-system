@@ -1,34 +1,14 @@
-# Workflows de CI — ativação
+# CI e CodeQL
 
-Este diretório contém os dois workflows prontos do projeto:
+Os workflows canônicos do projeto ficam em:
 
-- `ci.yml` — restore → build (Release, warnings como erros) → testes, em todo
-  push na `main` e em pull requests;
-- `codeql.yml` — análise estática de segurança (C#) em push, PR e agendamento
-  semanal.
+- `.github/workflows/ci.yml` — restore, build Release, testes e coleta de cobertura em push e pull request para `main`;
+- `.github/workflows/codeql.yml` — análise estática de segurança para C# em push, pull request e agendamento semanal.
 
-## Por que eles estão aqui e não em `.github/workflows/`?
+Este diretório mantém apenas a documentação de CI. As antigas cópias YAML foram removidas para evitar divergência entre documentação e configuração executável.
 
-A publicação automatizada deste repositório foi feita via API com um token sem o
-escopo `workflow`, e o GitHub recusa (403) a criação remota de arquivos em
-`.github/workflows/` sem esse escopo. Em vez de omitir o CI, os arquivos ficam
-aqui, prontos e revisados.
+## Verificação
 
-## Como ativar (uma única vez, ~1 minuto)
+Após abrir ou atualizar um pull request, confira em **Actions** se os workflows foram reconhecidos e executados. O projeto só deve declarar CI/CodeQL como aprovados depois de uma execução real bem-sucedida.
 
-Com git local:
-
-```bash
-git clone https://github.com/matheusflorindo32/dio-hotel-reservation-system.git
-cd dio-hotel-reservation-system
-mkdir -p .github/workflows
-cp docs/ci/ci.yml docs/ci/codeql.yml .github/workflows/
-git add .github/workflows
-git commit -m "ci: activate github actions workflows"
-git push
-```
-
-Ou pela interface web: **Add file → Upload files**, enviando os dois arquivos
-para o caminho `.github/workflows/`.
-
-Após o push, os badges do README passam a exibir o status real das execuções.
+Badges e links no `README.md` apontam diretamente para os workflows ativos.

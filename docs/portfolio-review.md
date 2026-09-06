@@ -1,36 +1,47 @@
-# Avaliação de portfólio (autoavaliação crítica)
+# Avaliação de portfólio — revisão crítica
 
-Avaliação honesta do projeto sob a ótica de recrutadores e avaliadores técnicos.
-Nenhuma nota é inflada; pontuações abaixo de 9 são justificadas.
+Avaliação do projeto sob a ótica de recrutadores e avaliadores técnicos, atualizada após a ativação real de CI e CodeQL no PR #1.
 
 | Critério | Nota (0–10) | Justificativa |
-|---|---|---|
-| Clareza | 9 | Camada A (requisitos DIO) claramente separada da Camada B (evolução). Matriz de rastreabilidade liga cada requisito a código e teste. |
-| Código | 9 | C# idiomático, guard clauses, exceções de domínio, encapsulamento real, `decimal` para dinheiro, zero warnings com `TreatWarningsAsErrors`. |
-| Arquitetura | 9 | Deliberadamente simples e justificada em ADR. Domínio puro sem dependências permite evolução (V2+) sem retrabalho. |
-| Testes | 9 | 49 testes reais, fronteira de desconto testada nos dois lados, valores monetários exatos, fluxo de integração completo. |
-| Documentação | 9 | README completo, regras de negócio, estratégia de testes, ADRs e diagramas Mermaid renderizáveis no GitHub. |
-| GitHub | 8 | Templates de issue/PR, CONTRIBUTING, SECURITY e CHANGELOG presentes. Falta histórico de colaboração real (projeto individual). |
-| CI | 7 | Workflows de build+test e CodeQL prontos e revisados, mas a ativação em `.github/workflows/` ficou pendente de um passo manual (limitação de escopo do token de publicação — ver `docs/ci/README.md`). Sem CD (fora de escopo na V1) e sem matriz multi-OS. |
-| Segurança | 9 | Sem segredos, sem dependências além de xUnit/coverlet, `.gitignore` cobre artefatos locais, SECURITY.md com política de reporte, workflow CodeQL pronto. |
-| Manutenibilidade | 9 | Métodos pequenos, nomes expressivos, invariantes no construtor, decisões registradas em ADR. |
-| Apresentação | 8 | README objetivo com demonstração real de saída. Não há GIF/screenshot animado — optou-se por saída textual verificável. |
-| Potencial de evolução | 9 | Roadmap V2–V5 definido; domínio desacoplado de I/O comporta API, persistência e SaaS sem alteração estrutural. |
+|---|---:|---|
+| Clareza | 9,5 | Camada educacional DIO permanece rastreável e separada das melhorias de engenharia. |
+| Código | 9,5 | C# idiomático, guard clauses, exceções de domínio, encapsulamento e `decimal` para dinheiro. |
+| Arquitetura | 9,2 | Simples por decisão, suficiente para o escopo e pronta para evolução sem padrões artificiais. |
+| Testes | 9,7 | 49/49 no CI, fronteiras críticas, valores monetários exatos e integração ponta a ponta. |
+| Documentação | 9,6 | README, regras, estratégia de testes, ADRs, Mermaid, roadmap e rastreabilidade. |
+| GitHub | 9,3 | PR, templates, commits semânticos, workflows ativos e documentação de governança. |
+| CI/CD | 9,4 | Restore, build Release, testes, cobertura e artefato em PR/push. CD não é necessário na V1 console. |
+| Segurança | 9,4 | CodeQL ativo, permissões mínimas, sem segredos e SECURITY.md. |
+| Manutenibilidade | 9,5 | Domínio pequeno, coeso, invariantes explícitas e baixo acoplamento. |
+| Apresentação | 9,5 | Primeira dobra do README prioriza tecnologia, evidência e diferenciais verificáveis. |
+| Potencial de evolução | 9,3 | Roadmap V2–V5 documentado sem fingir que a V1 já é um SaaS. |
 
-**Média: 8,7 / 10**
+**Média indicativa: 9,4 / 10.**
+
+## Evidências verificadas no PR #1
+
+- build Release: **PASS**;
+- warnings: **0**;
+- errors: **0**;
+- testes unitários: **45/45**;
+- testes de integração: **4/4**;
+- total: **49/49**;
+- cobertura unitária do Domain: **94,52% linhas / 100% branches**;
+- artefato de coverage: **publicado pelo workflow**;
+- CodeQL: **PASS**.
 
 ## Pontos fortes
 
-1. Rastreabilidade completa requisito → código → teste, verificável por
-   qualquer avaliador.
-2. Decisão normativa sobre a divergência textual da DIO documentada e protegida
-   por teste de fronteira.
-3. Disciplina de escopo: nenhuma abstração prematura.
+1. Rastreabilidade requisito → código → teste.
+2. Divergência textual da regra de desconto tratada por ADR e teste de fronteira.
+3. Automação real no GitHub, em vez de badges ou claims decorativos.
+4. Disciplina de escopo: sem abstrações prematuras.
 
-## Pontos de melhoria conhecidos
+## Melhorias futuras não bloqueantes
 
-1. Ativar os workflows de CI (passo manual único documentado em `docs/ci/`).
-2. Cobertura de linhas pode subir com testes para `ToString()` (baixo valor —
-   não priorizado).
-3. CI poderia incluir matriz Windows/Linux e cache de pacotes NuGet.
-4. Ausência de demonstração visual (GIF) no README.
+1. Fixar explicitamente `LangVersion` para máxima reprodutibilidade futura.
+2. Avaliar Dependabot e branch protection conforme o repositório ganhar colaboração.
+3. Considerar uma demonstração visual apenas se adicionar valor real ao portfólio.
+4. Evoluir para API/persistência somente em uma fase separada do desafio DIO.
+
+A revisão independente está em [final-review.md](final-review.md).
